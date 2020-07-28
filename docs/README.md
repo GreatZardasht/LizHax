@@ -1,5 +1,0 @@
-#Lizard Client
-
-##Features:
-
-##Developers:
