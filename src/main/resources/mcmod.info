@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
+  "modid": "lizard-client",
+  "name": "Lizard Client",
   "description": "Example placeholder mod.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["nullFoo", "RussianRoomba"],
+  "credits": "none",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
