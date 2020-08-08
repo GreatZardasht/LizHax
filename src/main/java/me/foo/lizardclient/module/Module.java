@@ -1,6 +1,7 @@
 /*    */ package me.foo.lizardclient.module;
 import org.lwjgl.input.Keyboard;
 
+import me.foo.lizardclient.Client;
 /*    */ 
 /*    */ import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatEvent;
@@ -72,6 +73,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 /* 63 */     if (Keyboard.getEventCharacter() == this.keyBind) {
 /* 64 */       Toggle();
 /*    */     }
+
+			Client.onSendChatMessage("Test123 (If you see this, keypresses are working)");
 /*    */   }
 /*    */   
 /*    */   public void onDisable() {

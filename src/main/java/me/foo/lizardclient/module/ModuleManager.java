@@ -9,7 +9,7 @@ import me.foo.lizardclient.modules.*;
    
    public void Init() {
 	   	this.moduleList.add(new AutoMLG());
-	   	this.moduleList.add(new AutoSprint());
+	   	/*this.moduleList.add(new AutoSprint());
 	   	this.moduleList.add(new Bhop());
 	   	this.moduleList.add(new CrystalAura());
 	   	this.moduleList.add(new EntityESP());
@@ -18,7 +18,7 @@ import me.foo.lizardclient.modules.*;
 	   	this.moduleList.add(new Glide());
 	   	this.moduleList.add(new KillAura());
 	   	this.moduleList.add(new Nofall());
-		this.moduleList.add(new Speed());
+		this.moduleList.add(new Speed());*/
    }
  
    
