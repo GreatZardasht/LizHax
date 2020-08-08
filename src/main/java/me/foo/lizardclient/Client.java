@@ -9,13 +9,17 @@ import me.foo.lizardclient.module.ModuleManager;
 import me.foo.lizardclient.ui.UIRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.play.server.SPacketChat;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent;
+import net.minecraftforge.client.event.ClientChatEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 
 @Mod(modid = Client.MODID, name = Client.NAME, version = Client.VERSION)
 public class Client {
@@ -28,6 +32,8 @@ public class Client {
    
    public static CommandManager commandManager;
    public static List<Block> espblocks = new ArrayList<>();
+   
+   public static Minecraft mc = FMLClientHandler.instance().getClient();
 
 	//Forge
 			
@@ -43,9 +49,15 @@ public class Client {
 		moduleManager.Init();
 	}
 	
-	@EventHandler
-	public static void onGui(DrawScreenEvent event) {
+	@SubscribeEvent
+	public static void onGui(RenderGameOverlayEvent.Text event) {
 		uiRenderer.draw();
+	}
+	
+	@SubscribeEvent
+	public void onClientTick(ClientTickEvent event) {
+		for(Module module : moduleManager.getEnabledModules())
+			module.onClientTick(event);
 	}
   
 /*    */   public static void onPreUpdate() {
@@ -60,14 +72,15 @@ public class Client {
 /*    */     }
 /*    */   }
 
-/*    */   public static void onKeyPressed(int keyCode) {
+		@SubscribeEvent
+		public static void onKeyPressed(KeyInputEvent event) {
 /* 60 */     for (Module module : moduleManager.moduleList) {
-/* 61 */       module.onKeyPressed(keyCode);
+/* 61 */       module.onKeyPressed(event);
 /*    */     }
 /*    */   }
 /*    */   
 /*    */   public static void addChatMessage(String s) {
-/* 66 */     (Minecraft.getMinecraft()).player.sendMessage((ITextComponent)new TextComponentString("§lLizard Client: §r" + s));
+/* 66 */     mc.player.sendMessage((ITextComponent)new TextComponentString("§lNull Client: §r" + s));
 /*    */   }
 /*    */   
 /*    */   public static boolean onSendChatMessage(String s) {
@@ -78,15 +91,16 @@ public class Client {
 /* 74 */     for (Module m : moduleManager.moduleList) {
 /* 75 */       if (m.isEnabled().booleanValue()) {
 /* 76 */         return m.onSendChatMessage(s);
-/*    */       }
-/*    */     } 
-/* 79 */     return true;
-/*    */   }
-/*    */   
-/*    */   public static boolean onReceiveChatMessage(SPacketChat packet) {
+			}
+		} 
+		return true;
+	}
+
+	@SubscribeEvent
+	public static boolean onReceiveChatMessage(ClientChatEvent event) {
 /* 83 */     for (Module m : moduleManager.moduleList) {
 /* 84 */       if (m.isEnabled().booleanValue()) {
-/* 85 */         return m.onRecieveChatMessage(packet);
+/* 85 */         return m.onRecieveChatMessage(event);
 /*    */       }
 /*    */     } 
 /*    */     

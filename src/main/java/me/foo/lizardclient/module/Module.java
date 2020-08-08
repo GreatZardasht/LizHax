@@ -1,9 +1,14 @@
 /*    */ package me.foo.lizardclient.module;
+import org.lwjgl.input.Keyboard;
+
 /*    */ 
 /*    */ import net.minecraft.client.Minecraft;
-/*    */ import net.minecraft.network.play.server.SPacketChat;
+import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 /*    */ 
 /*    */ 
 /*    */ 
@@ -17,7 +22,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /*    */   private String description;
 /* 16 */   private Boolean enabled = Boolean.valueOf(false);
 /*    */   
-/* 18 */   protected Minecraft mc = Minecraft.getMinecraft();
+/* 18 */   protected Minecraft mc = FMLClientHandler.instance().getClient();;
 /*    */   
 /* 20 */   public Boolean disable = Boolean.valueOf(false);
 /*    */   
@@ -63,8 +68,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /*    */   public void onPostUpdate() {}
 /*    */ 
 /*    */   
-/*    */   public void onKeyPressed(int keyCode) {
-/* 63 */     if (keyCode == this.keyBind) {
+/*    */   public void onKeyPressed(KeyInputEvent event) {
+/* 63 */     if (Keyboard.getEventCharacter() == this.keyBind) {
 /* 64 */       Toggle();
 /*    */     }
 /*    */   }
@@ -81,7 +86,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /*    */   public boolean onSendChatMessage(String s) {
 /* 78 */     return true;
 /*    */   }
-/*    */   public boolean onRecieveChatMessage(SPacketChat packet) {
+/*    */   public boolean onRecieveChatMessage(ClientChatEvent event) {
 /* 81 */     return true;
 /*    */   }
+
+	public void onClientTick(ClientTickEvent event) {
+		
+	}
 /*    */ }

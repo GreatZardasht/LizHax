@@ -8,6 +8,7 @@
 /*    */ import net.minecraft.util.math.RayTraceResult;
 /*    */ import net.minecraft.util.math.Vec3d;
 /*    */ import net.minecraft.world.World;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 /*    */ 
 /*    */ public class AutoMLG
 /*    */   extends Module
@@ -20,7 +21,7 @@
 /*    */ 
 /*    */ 
 /*    */   
-/*    */   public void onPreUpdate() {
+/*    */   public void onClientTick(ClientTickEvent event) {
 /* 24 */     if (this.mc.player.fallDistance >= 3.0F && System.currentTimeMillis() - this.last > 100L) {
 /* 25 */       Vec3d posVec = this.mc.player.getPositionVector();
 /* 26 */       RayTraceResult result = this.mc.world.rayTraceBlocks(posVec, posVec.addVector(0.0D, -5.329999923706055D, 0.0D), true, true, false);

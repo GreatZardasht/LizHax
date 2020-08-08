@@ -1,17 +1,19 @@
 /*    */ package me.foo.lizardclient.ui;
 /*    */ 
 /*    */ import java.awt.Color;
+
 /*    */ import me.foo.lizardclient.Client;
 /*    */ import me.foo.lizardclient.module.Module;
 /*    */ import net.minecraft.client.Minecraft;
 /*    */ import net.minecraft.client.gui.Gui;
+import net.minecraftforge.fml.client.FMLClientHandler;
 /*    */ 
 /*    */ 
 /*    */ 
 /*    */ public class UIRenderer
 /*    */   extends Gui
 /*    */ {
-/* 14 */   private Minecraft mc = Minecraft.getMinecraft();
+/* 14 */   private Minecraft mc = FMLClientHandler.instance().getClient();
 /*    */   
 /* 16 */   public Boolean ghost = Boolean.valueOf(false);
 /*    */   
