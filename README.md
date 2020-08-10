@@ -19,3 +19,7 @@ Simply click the download button in the top right of the website, and put it in 
 - nullFoo
 - TashCat
 - RussianRoomba
+
+---
+permalink: /index.html
+---
