@@ -26,9 +26,3 @@
 /* 26 */       Client.addChatMessage(String.valueOf(c.getAlias()) + ": " + c.getDescription()); 
 /*    */   }
 /*    */ }
-
-
-/* Location:              C:\Users\Ben\Downloads\Lizard Client.jar!\me\foo\lizardclient\commands\Help.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       1.1.3
- */

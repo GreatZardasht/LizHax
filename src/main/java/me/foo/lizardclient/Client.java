@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 
 @Mod(modid = Client.MODID, name = Client.NAME, version = Client.VERSION)
+@Mod.EventBusSubscriber
 public class Client {
    public static String clientName = "Lizard Client";
    public static String clientVersion = "a1.2";
@@ -40,8 +41,8 @@ public class Client {
    
 	//Forge
 			
-	public static final String MODID = "lizard-client";
-	public static final String NAME = "Lizard Client";
+	public static final String MODID = "null-client";
+	public static final String NAME = "NULL Client";
 	public static final String VERSION = "1.0";
 
 	@EventHandler

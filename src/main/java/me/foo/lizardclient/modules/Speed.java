@@ -2,6 +2,7 @@
 /*    */ 
 /*    */ import me.foo.lizardclient.module.Category;
 /*    */ import me.foo.lizardclient.module.Module;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 /*    */ 
 /*    */ 
 /*    */ 
@@ -16,8 +17,9 @@
 /*    */ 
 /*    */ 
 /*    */   
-/*    */   public void onPlayerUpdate() {
-/*    */     
+/*    */   public void onClientTick(ClientTickEvent event) {
+/*    */     super.onClientTick(event);
+
 /* 22 */     if ((this.mc.player.movementInput.forwardKeyDown || this.mc.player.movementInput.backKeyDown) && 
 /* 23 */       !this.mc.player.isSneaking() && this.mc.player.onGround) {
 /* 24 */       this.mc.player.motionX *= speedMultiplyer;
