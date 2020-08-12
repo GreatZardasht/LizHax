@@ -9,11 +9,14 @@ import me.foo.lizardclient.module.ModuleManager;
 import me.foo.lizardclient.ui.UIRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -34,7 +37,7 @@ public class Client {
    public static List<Block> espblocks = new ArrayList<>();
    
    public static Minecraft mc = FMLClientHandler.instance().getClient();
-
+   
 	//Forge
 			
 	public static final String MODID = "lizard-client";
@@ -42,7 +45,10 @@ public class Client {
 	public static final String VERSION = "1.0";
 
 	@EventHandler
-	public static void Init(FMLInitializationEvent event) {
+	public void Init(FMLInitializationEvent event) {
+		FMLCommonHandler.instance().bus().register(this);
+		MinecraftForge.EVENT_BUS.register(this);
+		
 		uiRenderer = new UIRenderer();
 		moduleManager = new ModuleManager();
 		commandManager = new CommandManager();
@@ -50,7 +56,7 @@ public class Client {
 	}
 	
 	@SubscribeEvent
-	public static void onGui(RenderGameOverlayEvent.Text event) {
+	public static void onGui(RenderGameOverlayEvent event) {
 		uiRenderer.draw();
 	}
 	
